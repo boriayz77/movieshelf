@@ -7,6 +7,8 @@ const app = express();
 const DB_URL = "mongodb://localhost:27017/movieshell" // url БД
 app.use(express.json());
 app.use('/api/movieshell', Router);// маршрутизация
+
+
 async function startApp(uri, callback) {
     try {
         await mongoose.connect(DB_URL, {useUnifiedTopology: true, useNewUrlParser: true});// подключение к БД
@@ -15,5 +17,6 @@ async function startApp(uri, callback) {
         console.log(e);
     }
 }
+
 startApp();// запуск сервера
 
