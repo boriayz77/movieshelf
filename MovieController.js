@@ -1,9 +1,14 @@
 import Movie from "./Movie.js";
+import movieValidation from "./validations.js";
 
 class MovieController {
 
     async createMovie(req, res) {
         try {
+            const {error} = movieValidation(req.body);
+            if (error) {
+                res.status(400).json({message: error.details[0].message});
+            }
             const {title, type, directors, genres, countries, year, description} = req.body;
             const movie = await Movie.create({title, type, directors, genres, countries, year, description});// создание документа
             res.status(200).json(movie); // возвращение добавленного документа
