@@ -9,6 +9,7 @@ app.use(express.json());
 app.use('/api/movieshell', Router);// маршрутизация
 
 
+
 async function startApp(uri, callback) {
     try {
         await mongoose.connect(DB_URL, {useUnifiedTopology: true, useNewUrlParser: true});// подключение к БД
