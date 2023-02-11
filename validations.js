@@ -1,8 +1,8 @@
 import Joi from "joi";
 export default function movieValidation(data){
       const shema =Joi.object({
-            title: Joi.string().required().min(3).max(30),
-            type: Joi.string().required().max(30).min(3),
+            title: Joi.string().required(),
+            type: Joi.alternatives("movie" , "tvSeries").required(),
             directors: Joi.array().required().max(30),
             genres: Joi.array().required().max(30),
             countries: Joi.array().required().max(30),

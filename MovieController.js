@@ -1,16 +1,16 @@
-import Movie from "./Movie.js";
+import createError from "http-errors";
+import MovieService from "./MovieService.js";
 import movieValidation from "./validations.js";
 
 class MovieController {
 
     async createMovie(req, res) {
         try {
-            const {error} = movieValidation(req.body);
-            if (error) {
-                res.status(400).json({message: error.details[0].message});
-            }
-            const {title, type, directors, genres, countries, year, description} = req.body;
-            const movie = await Movie.create({title, type, directors, genres, countries, year, description});// создание документа
+             const {error} = movieValidation(req.body);
+             if (error) {                                         // проверка входящих данных
+                throw createError({message: error.details[0].message});
+             }
+            const movie = await MovieService.createMovie(req.body)// создание документа
             res.status(200).json(movie); // возвращение добавленного документа
         } catch (e) {
             res.status(500).json(e);
@@ -19,14 +19,10 @@ class MovieController {
 
     async getAllforTittle(req, res) {
         try {
-            const {title} = req.params;
-            if (!title) {
-                res.json("title не указан");
-            }
-            const movie = await Movie.find({title: title}, {title: title, _id: 0});
+            const movie = await MovieService.getAllforTittle(req.params); // поиск по коллекции
             return res.json(movie);
         } catch (e) {
-            res.status(500).json(e);
+            res.json(e);
         }
     }
 }
