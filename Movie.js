@@ -7,6 +7,6 @@ const Movie = new mongoose.Schema({
     genres: {type: Array} , // Массив жанров
     countries: {type: Array} , // Массив стран
     year: {type: Number} , // Год производства
-    description: {type: Array} , // Краткое описание фильма
+    description: {type: String} , // Краткое описание фильма
 })
 export default mongoose.model('Movie',Movie);
