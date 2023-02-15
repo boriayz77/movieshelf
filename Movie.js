@@ -1,12 +1,12 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 const Movie = new mongoose.Schema({
 
-    title: {type: String, require: true}, // Название проекта
-    type: {type:String,require: true,enum: ["movie" , "tvSeries",] }, // Тип проекта.
-    directors: {type: Array, require: true} , // Массив режиссеров
-    genres: {type: Array, require: true} , // Массив жанров
-    countries: {type: Array, require: true} , // Массив стран
-    year: {type: Number, require: true} , // Год производства
-    description: {type: Array, require: true} , // Краткое описание фильма
+    title: {type: String}, // Название проекта
+    type: {type:String}, // Тип проекта.
+    directors: {type: Array} , // Массив режиссеров
+    genres: {type: Array} , // Массив жанров
+    countries: {type: Array} , // Массив стран
+    year: {type: Number} , // Год производства
+    description: {type: Array} , // Краткое описание фильма
 })
 export default mongoose.model('Movie',Movie);

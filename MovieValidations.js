@@ -1,5 +1,5 @@
 import Joi from "joi";
-export default function movieValidation(data){
+export default function movieValidation(data){ // валидация входящих данных
       const shema =Joi.object({
             title: Joi.string().required(),
             type: Joi.alternatives("movie" , "tvSeries").required(),
@@ -11,3 +11,4 @@ export default function movieValidation(data){
       });
   return shema.validate(data)
 };
+
